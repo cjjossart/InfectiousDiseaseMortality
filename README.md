@@ -1,9 +1,9 @@
 # InfectiousDiseaseMortality
-Infectious Disease Mortality and Other available Factors
-The goal of this project is to assess the relationship of infectious disease mortality and other available factors
-I am currently looking at the the percentage of those who are uninsured in an individual county and compare it to the mortality rate caused by infectious diseases.
+Uninsured and Infected
+This exploratory data analysis seeks to assess the relationship of the percentage of uninsured and infectious disease mortality rate. 
 
-Current Data sources:
+
+Data sources:
 IHME: Infectious disease mortality by county from 1980 to 2014
   URL: http://ghdx.healthdata.org/sites/default/files/record-attached-files/IHME_USA_COUNTY_INFECT_DIS_MORT_1980_2014_NATIONAL_XLSX.zip
 
