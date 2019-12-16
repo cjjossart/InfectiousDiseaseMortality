@@ -312,6 +312,7 @@ hist(t_ui$PCTICdiff)
 ggplot(t_ui, aes(MRID2010,PCTUI2010)) +
     geom_jitter(MRID2010,PCTUI2010)
 # Getting Summary infromation from each variable of interest
+t_uia <- subset(t_ui, t_ui$MRID2010 == 12:100)
 summary(t_ui$MRID2010)
 summary(t_ui$MRID2014)
 summary(t_ui$MRIDdiff)
@@ -528,8 +529,8 @@ colnames(t_uin) <- make.unique(names(t_uin))
 
 ## Attempting to create a bivariate map of the relationship of uninsured percentages and MR rates
 # Uninsured to MR ID in 2010
-    datay <- bi_class(t_uin, x = PCTUI2010, y = MRID2010, style = "quantile", dim = 3)
-    datay <- subset(datay, datay$bi_class != "NA-1" & data$bi_class != "NA-NA" ) # remove NAs
+    datay <- bi_class(t_uin, x = PCTUI2010, y = MRID2010, style = "fisher", dim = 3)
+    datay <- subset(datay, datay$bi_class != "NA-1" & datay$bi_class != "NA-NA" ) # remove NAs
     
     y <- ggplot(data = datay, 
                 mapping = aes(x = long, y = lat, 
@@ -554,12 +555,12 @@ colnames(t_uin) <- make.unique(names(t_uin))
     
     y3 <- ggdraw() +
       draw_plot(y2, 0, 0, 0.95, 1) +
-      draw_plot(legendy, 0.7, 0.3,0.2, 0.2)
+      draw_plot(legendy, 0.7, 0.1,0.2, 0.2)
     y3
     
 # Uninsured to MR ID in 2014
-    dataz <- bi_class(t_uin, x = PCTUI2014, y = MRID2014, style = "quantile", dim = 3)
-    dataz <- subset(dataz, dataz$bi_class != "NA-1" & data$bi_class != "NA-NA" ) # remove NAs
+    dataz <- bi_class(t_uin, x = PCTUI2014, y = MRID2014, style = "fisher", dim = 3)
+    dataz <- subset(dataz, dataz$bi_class != "NA-1" & dataz$bi_class != "NA-NA" ) # remove NAs
     
     z <- ggplot(data = dataz, 
                 mapping = aes(x = long, y = lat, 
@@ -584,7 +585,7 @@ colnames(t_uin) <- make.unique(names(t_uin))
     
     z3 <- ggdraw() +
           draw_plot(z2, 0, 0, 0.95, 1) +
-          draw_plot(legendy, 0.7, 0.3,0.2, 0.2)
+          draw_plot(legendy, 0.7, 0.1,0.2, 0.2)
     z3
 
 # Differenc in Uninsured to Difference in MR ID in 2014
@@ -672,7 +673,7 @@ b3 <- b2 + labs(title = "Difference in Percent Uninsured in Alabama Counties fro
 b3
 
 
-datab <- bi_class(data_AL, x = PCTUIdiff, y = MRIDdiff, style = "quantile", dim = 3)
+datab <- bi_class(data_AL, x = PCTUIdiff, y = MRIDdiff, style = "fisher", dim = 3)
 datab <- subset(datab, datab$bi_class != "NA-1" & datab$bi_class != "NA-NA" & datab$bi_class != "NA-2" ) # remove NAs
 
 b <- ggplot(data = datab, 
